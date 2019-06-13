@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-exports.get = async (url) => {
+async function get(url: string): Promise<any> {
   return axios.get(url).catch(err => {
       // do my thing (such as logging)
       console.log(`%%%%%%%%%%%% There was an error during ${err.request.method} to ${url}! %%%%%%%%%%%%`);
@@ -8,3 +8,5 @@ exports.get = async (url) => {
       throw err;
     });
 }
+
+export default {get}

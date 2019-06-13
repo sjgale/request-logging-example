@@ -1,4 +1,4 @@
-const dogs = require('./dog-service');
+import dogs from './dog-service';
 
 (async () => {
   console.log('######## Lets get some K9s! ########\n\n');
