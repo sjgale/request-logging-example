@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "../dist/client",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "jsx": "react",
+    "lib": ["es6", "dom", "dom.iterable"],
+    "sourceMap": true,
+    "allowJs": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "allowJs": true,
-    "module": "esnext",
     "target": "es5",
+    "jsx": "react",
     "sourceMap": true,
     "noImplicitAny": false,
     "experimentalDecorators": true,
@@ -11,9 +12,16 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "outDir": "../dist/server",
+    "esModuleInterop": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "client",
+    "dist"
+  ],
+  "include": [
+    "./**/*"
   ]
 }
