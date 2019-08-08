@@ -9,31 +9,32 @@ let app = express()
 app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.get('/dog-breeds', async (req, res) => {
+  const dogBreeds = await dogs.getDogBreeds()
+      .then(response => response.data && Object.keys(response.data.message))
+      .catch(console.log)
+  res.json(dogBreeds)
+})
+
+app.get('/random-dog', async (req, res) => {
+  const randomDogImage = await dogs.getRandomDogImage()
+      .then(response => response.data && response.data.message)
+      .catch(console.log)
+  res.json(randomDogImage)
+})
+
+app.post('/dog-form-response', (req, res, next) => {
+  console.log(req.body)
+  res.json({message: 'OK!'})
+})
+
 app.get('*', express.static(path.resolve(process.env.DIST_PATH, 'client')))
+
 app.get('*', (req, res, next) => {
   res.sendFile(path.resolve(process.env.DIST_PATH, 'client/index.html'))
 })
+
 app.listen(3000, () => {
   console.log('listening on port: 3000')
 })
-
-// (async () => {
-//   console.log('######## Lets get some K9s! ########\n\n');
-//   let dogBreedsResponse, dogBreeds;
-
-//   try {
-//     dogBreedsResponse = await dogs.getDogBreeds();
-//   } catch (err) {
-//     console.log('%%%%%%%%%%%% Crap! Dog breeds didn\'t load! %%%%%%%%%%%%\n\n');
-//   }
-//   dogBreeds = dogBreedsResponse && dogBreedsResponse.data && Object.keys(dogBreedsResponse.data.message).join(', ') || 'There was an error getting breeds!';
-  
-//   let dogImageResponse = await dogs.getRandomDogImage().catch(err => {
-//     console.log('%%%%%%%%%%%% Shoot, no dog picture!! %%%%%%%%%%%%\n\n');
-//   })
-//   let dogImage = dogImageResponse && dogImageResponse.data && dogImageResponse.data.message || 'Error getting image!';
-  
-//   console.log('Dog Breeds:\n', dogBreeds, '\n\nDog Image:\n', dogImage);
-  
-//   console.log('\n\n######## Dog time is over! ########');
-// })();

@@ -1,5 +1,0 @@
-{
-  "watch": ["server"],
-  "ext": "ts",
-  "exec": "DIST_PATH=./dist ts-node --project ./server/tsconfig.json ./server/index.ts"
-}
